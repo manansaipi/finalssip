@@ -2,37 +2,22 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Post
+class Post extends Model
 {
-    private static $blog_posts = [
-        [
-            'title' => 'first title',
-            'slug' => 'first-title',
-            'author' => 'Abdul Mannan',
-            'body' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure itaque optio minus error laborum quidem culpa animi accusamus nemo consequuntur atque veniam fugit, vero rem. Commodi odit odio exercitationem totam!lor
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam numquam quis esse. Mollitia illum, sit ullam aspernatur eum sint vel maiores voluptate quasi dolore assumenda quod obcaecati sed eius quo?'
-        ],
-        [
-            'title' => 'second title',
-            'slug' => 'second-title',
-            'author' => 'Abdul Mannan',
-            'body' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure itaque optio minus error laborum quidem culpa animi accusamus nemo consequuntur atque veniam fugit, vero rem. Commodi odit odio exercitationem totam!lor
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam numquam quis esse. Mollitia illum, sit ullam aspernatur eum sint vel maiores voluptate quasi dolore assumenda quod obcaecati sed eius quo?Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure itaque optio minus error laborum quidem culpa animi accusamus nemo consequuntur atque veniam fugit, vero rem. Commodi odit odio exercitationem totam!lor
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam numquam quis esse. Mollitia illum, sit ullam aspernatur eum sint vel maiores voluptate quasi dolore assumenda quod obcaecati sed eius quo?Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure itaque optio minus error laborum quidem culpa animi accusamus nemo consequuntur atque veniam fugit, vero rem. Commodi odit odio exercitationem totam!lor
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam numquam quis esse. Mollitia illum, sit ullam aspernatur eum sint vel maiores voluptate quasi dolore assumenda quod obcaecati sed eius quo?'
-        ],
-    ];
+    use HasFactory;
 
-    public static function all()
+    // protected $fillable = ['title', 'excerpt', 'body', 'slug'];
+    protected $guarded = ['id'];
+
+    public function category()
     {
-        return collect(self::$blog_posts);
+        return $this->belongsTo(Category::class);
     }
-
-    public static function find($slug)
+    public function author()
     {
-        $posts = static::all();
-
-        return $posts->firstWhere('slug', $slug);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
