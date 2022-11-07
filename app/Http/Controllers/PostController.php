@@ -13,6 +13,7 @@ class PostController extends Controller
     {
         return view('blog', [
             'title' => 'All Posts',
+            'active' => 'blog',
             // 'posts' => Post::all()
             'posts' => Post::latest()->get()
         ]);
@@ -21,6 +22,7 @@ class PostController extends Controller
     {
         return view('post', [
             'title' => 'Single Post',
+            'active' => 'blog',
             'post' => $post
         ]);
     }
@@ -28,6 +30,7 @@ class PostController extends Controller
     {
         return view('categories', [
             'title' => 'Post Categories',
+            'active' => 'categories',
             'categories' => Category::all()
         ]);
     }
@@ -35,7 +38,8 @@ class PostController extends Controller
     {
         return view('blog', [
             'title' => "Post By Category :  $category->name",
-            'posts' => $category->posts,
+            'active' => 'blog',
+            'posts' => $category->posts->load('author', 'category'),
 
         ]);
     }
@@ -43,7 +47,8 @@ class PostController extends Controller
     {
         return view('blog', [
             'title' => "Post By Author :  $author->name",
-            'posts' => $author->posts,
+            'active' => 'blog',
+            'posts' => $author->posts->load('category', 'author'),
         ]);
     }
 }
