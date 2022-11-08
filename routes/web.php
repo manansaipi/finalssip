@@ -22,6 +22,12 @@ Route::get('/', function () {
         'active' => 'home',
     ]);
 });
+Route::get('/home', function () {
+    return view('home_', [
+        // 'title' => 'Home',
+        // 'active' => 'home',
+    ]);
+});
 Route::get('/about', function () {
     return view('about', [
         "title" => "About",
