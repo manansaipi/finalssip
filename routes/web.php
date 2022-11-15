@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -18,23 +19,23 @@ use App\Models\Category;
 |
 */
 
-Route::get('/',  [LoginController::class, 'index']);
-Route::post('/',  [LoginController::class, 'login']);
 
-Route::get('/register', [RegisterController::class, 'index']);
-Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/',  [LoginController::class, 'index'])->name('login')->middleware('guest'); //loginpage
+Route::post('/',  [LoginController::class, 'login'])->middleware('guest'); //loginpage
 
-Route::get('/home', function () {
-    return view('home', [
+Route::post('/logout',  [LoginController::class, 'logout'])->middleware('auth');
+
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
+
+Route::get('/home', [DashboardController::class, 'index'])->middleware('auth');
+
+Route::get('/allusers', [DashboardController::class, 'showAllUsers'])->middleware('auth');
+
+Route::get('/home2', function () {
+    return view('home_', [
         'title' => 'Home',
         'active' => 'home',
-    ]);
-});
-
-Route::get('/home', function () {
-    return view('home_', [
-        // 'title' => 'Home',
-        // 'active' => 'home',
     ]);
 });
 Route::get('/about', function () {

@@ -55,7 +55,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input required value="{{ old('email') }}" type="email" id="email" name="email" class="form-control  @error('email') is-invalid @enderror" />
+                      <input required value="{{ old('email') }}" type="email" id="email" name="email" class="form-control  @error('email') is-invalid @enderror"" />
                       <label class="form-label" for="form3Example3c">Your Email</label>
 
                           @error('email')
