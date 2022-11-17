@@ -4,10 +4,13 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TableController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 use App\Models\Category;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +33,21 @@ Route::post('/register', [RegisterController::class, 'store'])->middleware('gues
 
 Route::get('/home', [DashboardController::class, 'index'])->middleware('auth');
 
-Route::get('/allusers', [DashboardController::class, 'showAllUsers'])->middleware('auth');
+Route::get('/building_a', [DashboardController::class, 'building_ATable'])->middleware('auth');
+
+Route::get('/building_a', [TableController::class, 'showUsersInBA'])->middleware('auth');
+
+Route::get('/building_b', [DashboardController::class, 'building_BTable'])->middleware('auth');
+
+// Route::get('/building_b', [TableController::class, 'showAllUsers'])->middleware('auth');
+
+Route::get('/building_c', [DashboardController::class, 'building_CTable'])->middleware('auth');
+
+// Route::get('/building_c', [TableController::class, 'showAllUsers'])->middleware('auth');
+
+Route::get('/allusers', [DashboardController::class, 'usersTable'])->middleware('auth');
+
+Route::get('/allusers', [TableController::class, 'showAllUsers'])->middleware('auth');
 
 Route::get('/home2', function () {
     return view('home_', [

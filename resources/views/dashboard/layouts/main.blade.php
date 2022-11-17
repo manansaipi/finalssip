@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    @yield('custom_styles')
 
 </head>
 
@@ -26,11 +27,11 @@
 
    
        
-    @include('partials.sidebar')
+    @include('dashboard.partials.sidebar')
 
-        @include('partials.topbar')
+        @include('dashboard.partials.topbar')
 
-                @include('contents.home')
+                @yield('page_content')
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -86,12 +87,8 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+   
+    @yield('custom_script')
 
 </body>
 

@@ -24,7 +24,7 @@
   <div class="container-fluid h-custom">
 
    @if(session()->has('success'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
+<div class="alert alert-success alert-dismissible fade show" role="alert"> 
   {{ session('success') }}  
 </div>
   @endif

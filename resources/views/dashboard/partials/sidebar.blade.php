@@ -32,7 +32,21 @@
             </div>
             
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item <?php 
+            switch ($active) {
+            case "BA":
+                echo "active";
+                break;
+            case "BB":
+                echo "active";
+                break;
+             case "BC":
+                echo "active";
+                break;
+            default:
+            echo "";
+
+            } ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i>
@@ -44,12 +58,26 @@
                     <span>Buildings</span>
                 </a>
                 
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse <?php 
+            switch ($active) {
+            case "BA":
+                echo "show";
+                break;
+            case "BB":
+                echo "show";
+                break;
+             case "BC":
+                echo "show";
+                break;
+            default:
+            echo "";
+
+            } ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Table :</h6>                
-                        <a class="collapse-item" href="tableEmployee.php">Building A</a>
-                        <a class="collapse-item" href="tableTicket.php">Building B</a>
-                        <a class="collapse-item" href="tableTicket.php">Building C</a>
+                        <a class="collapse-item {{ ($active) === "BA" ? 'active' : '' }}" href="/building_a">Building A</a>
+                        <a class="collapse-item {{ ($active) === "BB" ? 'active' : '' }}" href="/building_b">Building B</a>
+                        <a class="collapse-item {{ ($active) === "BC" ? 'active' : '' }}" href="/building_c">Building C</a>
                     </div>
                 </div>
             </li>
