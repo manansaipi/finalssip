@@ -83,18 +83,43 @@
             </li>
 
 
-            <li class="nav-item">
+            <li class="nav-item 
+             <?php 
+            switch ($active) {
+            case "all tickets":
+                echo "active";
+                break;
+            case "my tickets":
+                echo "active";
+                break;
+            default:
+            echo "";
+            } ?>
+            
+            ">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Tickets</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseUtilities" class="collapse 
+                 <?php 
+            switch ($active) {
+            case "all tickets":
+                echo "show";
+                break;
+            case "my tickets":
+                echo "show";
+                break;
+            default:
+            echo "";
+            } ?>
+                " aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">TABLE :</h6>
-                        <a class="collapse-item" href="utilities-color.html">All Tickets</a>
-                        <a class="collapse-item" href="utilities-border.html">My Tickets</a>
+                        <a class="collapse-item {{ ($active) === "all tickets" ? 'active' : '' }}" href="alltickets">All Tickets</a>
+                        <a class="collapse-item {{ ($active) === "my tickets" ? 'active' : '' }}" href="/mytickets">My Tickets</a>
                     </div>
                 </div>
             </li>

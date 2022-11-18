@@ -7,6 +7,8 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Building;
+use App\Models\Room;
 
 
 class DatabaseSeeder extends Seeder
@@ -25,25 +27,31 @@ class DatabaseSeeder extends Seeder
         // ]);
         User::factory(5)->create();
 
-        Category::create([
-            'name' => 'Web Programing',
-            'slug' => 'web-programing',
+        Building::create([
+            'name' => 'A',
+            'slug' => 'a',
 
         ]);
 
-        Category::create([
-            'name' => 'Web Design',
-            'slug' => 'web-Design',
+        Building::create([
+            'name' => 'B',
+            'slug' => 'b',
 
         ]);
 
-        Category::create([
-            'name' => 'Personal',
-            'slug' => 'personal',
+        Building::create([
+            'name' => 'C',
+            'slug' => 'c',
 
         ]);
 
-        Post::factory(20)->create();
+        Room::factory(20)->create();
+
+        // Post::factory(20)->create();
+
+
+
+
 
         // Post::create([
         //     'title' => 'First',

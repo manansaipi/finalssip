@@ -35,19 +35,15 @@ Route::get('/home', [DashboardController::class, 'index'])->middleware('auth');
 
 Route::get('/building_a', [DashboardController::class, 'building_ATable'])->middleware('auth');
 
-Route::get('/building_a', [TableController::class, 'showUsersInBA'])->middleware('auth');
-
 Route::get('/building_b', [DashboardController::class, 'building_BTable'])->middleware('auth');
-
-// Route::get('/building_b', [TableController::class, 'showAllUsers'])->middleware('auth');
 
 Route::get('/building_c', [DashboardController::class, 'building_CTable'])->middleware('auth');
 
-// Route::get('/building_c', [TableController::class, 'showAllUsers'])->middleware('auth');
+Route::get('/alltickets', [DashboardController::class, 'all_tickets'])->middleware('auth');
 
-Route::get('/allusers', [DashboardController::class, 'usersTable'])->middleware('auth');
+Route::get('/mytickets', [DashboardController::class, 'my_tickets'])->middleware('auth');
 
-Route::get('/allusers', [TableController::class, 'showAllUsers'])->middleware('auth');
+Route::get('/allusers', [DashboardController::class, 'all_users'])->middleware('auth');
 
 Route::get('/home2', function () {
     return view('home_', [
