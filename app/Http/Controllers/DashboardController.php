@@ -16,33 +16,33 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function building_ATable()
-    {
-        return view('dashboard.table_building', [
-            'title' => 'Building_A',
-            'active' => 'BA',
-            'users' => User::all(),
-            'rooms' => Room::where('building_id', 1)->get()
-        ]);
-    }
+    // public function building_ATable()
+    // {
+    //     return view('dashboard.table_building', [
+    //         'title' => 'Building_A',
+    //         'active' => 'BA',
+    //         'users' => User::all(),
+    //         'rooms' => Room::where('building_id', 1)->get()
+    //     ]);
+    // }
 
-    public function building_BTable()
-    {
-        return view('dashboard.table_building', [
-            'title' => 'Building_B',
-            'active' => 'BB',
-            'rooms' => Room::where('building_id', 2)->get()
-        ]);
-    }
+    // public function building_BTable()
+    // {
+    //     return view('dashboard.table_building', [
+    //         'title' => 'Building_B',
+    //         'active' => 'BB',
+    //         'rooms' => Room::where('building_id', 2)->get()
+    //     ]);
+    // }
 
-    public function building_CTable()
-    {
-        return view('dashboard.table_building', [
-            'title' => 'Building_C',
-            'active' => 'BC',
-            'rooms' => Room::where('building_id', 3)->get()
-        ]);
-    }
+    // public function building_CTable()
+    // {
+    //     return view('dashboard.table_building', [
+    //         'title' => 'Building_C',
+    //         'active' => 'BC',
+    //         'rooms' => Room::where('building_id', 3)->get()
+    //     ]);
+    // }
 
     public function all_tickets()
     {
@@ -68,6 +68,23 @@ class DashboardController extends Controller
             'title' => 'All Users',
             'active' => 'all users',
             'users' => User::all(),
+        ]);
+    }
+    public function detail_user(User $user)
+    {
+        return view('dashboard.detail_user', [
+            'title' => 'All Users',
+            'active' => 'all users',
+            'user' => $user,
+        ]);
+    }
+    public function detail(User $user)
+    {
+        return view('dashboard.detail', [
+            'title' => 'All Users',
+            'active' => 'all users',
+            'users' => $user,
+
         ]);
     }
 }

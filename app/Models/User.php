@@ -51,4 +51,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(Room::class);
     }
+    public function position()
+    {
+        return $this->belongsTo(Position::class);
+    }
 }

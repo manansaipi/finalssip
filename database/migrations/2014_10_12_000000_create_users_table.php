@@ -15,11 +15,18 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('position_id')->default('1');
             $table->string('name');
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->date('birthday')->nullable();
+            $table->text('bio')->nullable();
+            $table->integer('age')->nullable();
+            $table->string('country')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('github')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

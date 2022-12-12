@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.main')
 
 @section('custom_styles')
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 @endsection
 
 @section('page_content')
@@ -34,7 +34,7 @@
                                             <th>Name</th>
                                             <th>Position</th>
                                             <th>Country</th>
-                                            <th>Age<th>
+                                            <th>Age</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -42,10 +42,22 @@
                                       <?php global $number; ?>
                                         @foreach ($users as $user)
                                         <tr>
-                                            <td>{{ $number += 1;  }}</td>
+                                            <td>{{ $user->id  }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
-                                            <td>{{ $number +1 }}</td>
+                                            <td>{{ $user->position->name }}</td>
+                                            <td>{{ $user->age }}</td>
+                                           <td style="text-align: center;">
+                                                    <a href="/dashboard/users/{{ $user->id }}" class="btn btn-info btn-icon-split btn-sm">
+                                                        <span class="text">Detail</span>
+                                                    </a>
+                                                  
+                                                        <a href="" class="btn btn-primary btn-icon-split btn-sm">
+                                                            <span class="text">Edit</span>
+                                                        </a>
+
+                                             
+                                                </td>
                                         </tr>
                                           @endforeach
                                     </tbody>
@@ -63,9 +75,9 @@
 
 @section('custom_script')
      <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+    <script src="/js/demo/datatables-demo.js"></script>
 @endsection

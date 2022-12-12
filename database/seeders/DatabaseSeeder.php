@@ -5,6 +5,8 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Position;
+use App\Models\Bio;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Building;
@@ -25,27 +27,23 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'abdul.saipi@stduent.president.ac.id',
         //     'password' => bcrypt('12345')
         // ]);
-        User::factory(5)->create();
+        User::factory(10)->create();
 
-        Building::create([
-            'name' => 'A',
-            'slug' => 'a',
-
-        ]);
-
-        Building::create([
-            'name' => 'B',
-            'slug' => 'b',
+        Position::create([
+            'name' => 'CEO',
 
         ]);
 
-        Building::create([
-            'name' => 'C',
-            'slug' => 'c',
+        Position::create([
+            'name' => 'It Employee',
 
         ]);
 
-        Room::factory(20)->create();
+        Position::create([
+            'name' => 'Employee',
+        ]);
+
+        // Room::factory(20)->create();
 
         // Post::factory(20)->create();
 

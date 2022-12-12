@@ -64,7 +64,7 @@
             } ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Table :</h6>                
-                        <a class="collapse-item {{ ($active) === "all users" ? 'active' : '' }}" href="/allusers">Employee</a>
+                        <a class="collapse-item {{ ($active) === "all users" ? 'active' : '' }}" href="/dashboard/users">Employee</a>
                         <a class="collapse-item {{ ($active) === "tickets" ? 'active' : '' }}" href="/building_b">Tickets</a>
                     </div>
                 </div>
