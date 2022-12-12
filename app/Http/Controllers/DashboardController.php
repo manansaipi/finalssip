@@ -31,7 +31,7 @@ class DashboardController extends Controller
         return view('dashboard.table_building', [
             'title' => 'Building_B',
             'active' => 'BB',
-            'users' => User::all(),
+            'rooms' => Room::where('building_id', 2)->get()
         ]);
     }
 
@@ -40,7 +40,7 @@ class DashboardController extends Controller
         return view('dashboard.table_building', [
             'title' => 'Building_C',
             'active' => 'BC',
-            'users' => User::all(),
+            'rooms' => Room::where('building_id', 3)->get()
         ]);
     }
 

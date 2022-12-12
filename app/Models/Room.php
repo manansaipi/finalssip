@@ -23,6 +23,6 @@ class Room extends Model
     //or
     public function owner() //<-- laravel will find in the table, is there any owner_id in the table? need to alias->user_id 
     {
-        return $this->belongsTo(User::class, 'user_id'); //user_id == alias 
+        return $this->belongsTo(User::class, 'user_id'); //user_id == alias/nama lain
     }
 }

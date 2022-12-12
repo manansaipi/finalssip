@@ -24,26 +24,27 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Full Name</th>
-                                            {{-- <th>Email</th>
-                                            <th>Age</th> --}}
+                                            <th>Room Code</th>
+                                            <th>Name</th>
+                                            {{-- <th>Room Code</th> --}}
+                                            {{-- <th>Age</th> --}}
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Full Name</th>
-                                            {{-- <th>Email</th>
-                                            <th>Age</th> --}}
+                                            <th>Room Code</th>
+                                            <th>Name</th>
+                                            {{-- <th></th> --}}
+                                            {{-- <th>Age</th> --}}
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                       <?php global $number; ?>
                                         @foreach ($rooms as $room)
                                         <tr>
-                                            <td>{{ $room->building->name . $number+=1;  }}</td>
+                                            <td>{{ $room->building->name . $number+=1 }}</td>
                                             <td>{{ $room->owner->name }}</td>
+                                            {{-- <td>{{ }}</td> --}}
                                             {{-- <td>{{ $user->email }}</td>
                                             <td>{{ $number +1 }}</td> --}}
                                         </tr>
