@@ -55,4 +55,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Position::class);
     }
+    public function ticket()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }

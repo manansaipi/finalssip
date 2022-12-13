@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardUserController;
+use App\Http\Controllers\DashboardTicketController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -37,9 +38,17 @@ Route::get('/home', function () {
     ]);
 })->middleware('auth');
 
-// Route::get('/dashboard/users', DashboardController::class, 'all_users')->middleware('auth');
+Route::get('/dashboard/myprofile', function () {
+    return view('dashboard.edit_myprofile', [
+        'active' => 'myprofile'
+    ]);
+})->middleware('auth');
 
 Route::resource('/dashboard/users', DashboardUserController::class)->middleware('auth');
+
+Route::resource('/dashboard/tickets', DashboardTicketController::class)->middleware('auth');
+
+
 
 Route::get('/home2', function () {
     return view('home_', [

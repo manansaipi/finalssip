@@ -11,7 +11,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\Building;
 use App\Models\Room;
-
+use App\Models\Ticket;
 
 class DatabaseSeeder extends Seeder
 {
@@ -42,6 +42,7 @@ class DatabaseSeeder extends Seeder
         Position::create([
             'name' => 'Employee',
         ]);
+        Ticket::factory(20)->create();
 
         // Room::factory(20)->create();
 

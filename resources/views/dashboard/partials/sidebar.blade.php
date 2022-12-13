@@ -65,7 +65,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Table :</h6>                
                         <a class="collapse-item {{ ($active) === "all users" ? 'active' : '' }}" href="/dashboard/users">Employee</a>
-                        <a class="collapse-item {{ ($active) === "tickets" ? 'active' : '' }}" href="/building_b">Tickets</a>
+                        <a class="collapse-item {{ ($active) === "tickets" ? 'active' : '' }}" href="/dashboard/tickets">Tickets</a>
                     </div>
                 </div>
             </li>
@@ -79,7 +79,7 @@
                     <span>My Ticket</span>
                 </a>
                    
-            
+
             </li>        
           
 
@@ -90,10 +90,9 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             
-            <li class="nav-item">
-            
-                <a class="nav-link" href='/'>
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+            <li class="nav-item {{ ($active) === "myprofile" ? "active" : "" }}">
+                <a class="nav-link" href='/dashboard/myprofile'>
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray"></i>
                     <span>Profile</span></a>
                    
             
