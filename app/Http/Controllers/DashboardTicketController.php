@@ -86,13 +86,14 @@ class DashboardTicketController extends Controller
      */
     public function update(Request $request, Ticket $ticket)
     {
-        if ($request->status_ticket == 3) {
-            $validatedData['status_ticket'] = 3;
-            Ticket::where('id', $ticket->id)
-                ->update($validatedData);
-            return redirect('/dashboard/myticket')->with('deleted', "Ticket canceled!");
-        }
+
         if (auth()->user()->id == $ticket->creator_id) {
+            if ($request->status_ticket == 3) {
+                $validatedData['status_ticket'] = 3;
+                Ticket::where('id', $ticket->id)
+                    ->update($validatedData);
+                return redirect('/dashboard/myticket')->with('deleted', "Ticket canceled!");
+            }
             $validatedData = $request->validate([
                 'ticket_title' => 'required|max:255',
                 'body' => 'required',
@@ -113,7 +114,6 @@ class DashboardTicketController extends Controller
                 ]);
                 $validatedData['status_ticket'] = 2;
                 $validatedData['solvedby_id'] = auth()->user()->id;
-                $validatedData['feedback'] = auth()->user()->id;
                 Ticket::where('id', $ticket->id)
                     ->update($validatedData);
                 return redirect('/dashboard/tickets')->with('success', "Successfully solved the ticket!");

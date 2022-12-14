@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Category;
 use App\Models\Ticket;
+use App\Models\Position;
+use App\Models\Country;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -43,7 +45,9 @@ Route::get('/home', function () {
 
 Route::get('/dashboard/myprofile', function () {
     return view('dashboard.edit_myprofile', [
-        'active' => 'myprofile'
+        'active' => 'myprofile',
+        'positions' => Position::all(),
+        'countries' => DB::table('countries')->orderBy('name')->get()
     ]);
 })->middleware('auth');
 

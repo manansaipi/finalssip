@@ -77,7 +77,23 @@ class DashboardUserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $rules = [
+            'name' => 'required|max:125',
+        ];
+        if ($request->username != $user->username) {
+            $rules['username'] = ['required', 'min:4', 'max:25', 'unique:users'];
+        }
+        $validatedData = $request->validate($rules);
+        $validatedData['country_id'] = $request->country;
+        $validatedData['age'] = $request->age;
+        $validatedData['instagram'] = $request->instagram;
+        $validatedData['github'] = $request->github;
+        $validatedData['birthday'] = $request->birthday;
+        $validatedData['bio'] = $request->bio;
+
+        User::where('id', auth()->user()->id)
+            ->update($validatedData);
+        return redirect('/home')->with('success', "Profile updated!");
     }
 
     /**

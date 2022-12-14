@@ -24,7 +24,7 @@ class UserFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'bio' => fake()->text(),
             'age' =>  mt_rand(15, 30),
-            'country' => fake()->country(),
+            'country_id' => mt_rand(1, 100),
             'instagram' => fake()->userName(),
             'github' => fake()->userName(),
             'birthday' => now(),

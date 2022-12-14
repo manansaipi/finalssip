@@ -5,12 +5,19 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
+                     @if (session()->has('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    
                         <h1 class="h3 mb-0 text-gray-800">Hallo {{ Auth::user()->username }} !</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        <a href="/dashboard/myticket" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-fw fa-wrench grey-200"></i> Report Porblem</a>
                     </div>
-
+                                
+                                
                     <!-- Content Row -->
                     <div class="row">
 
@@ -158,7 +165,7 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
+                                    <canvas id="myPieChart"></canvas>
                                     </div>
                                     <div class="mt-4 text-center small">
                                         <span class="mr-2">

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('position_id')->default('3');
+            $table->foreignId('position_id')->default(3);
             $table->string('name');
             $table->string('username')->unique();
             $table->string('email')->unique();
@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('password');
             $table->date('birthday')->nullable();
             $table->text('bio')->nullable();
-            $table->integer('age')->nullable();
-            $table->string('country')->nullable();
+            $table->integer('age')->default(18);
+            $table->foreignId('country_id')->default(1);
             $table->string('instagram')->nullable();
             $table->string('github')->nullable();
             $table->rememberToken();

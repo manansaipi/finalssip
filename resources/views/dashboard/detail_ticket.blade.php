@@ -235,11 +235,8 @@
                             </div>
                             <div class="modal-body">Select "Confirm" below to confirm the ticket. </div>
                             <div class="modal-footer">
-                                <form class="form" action="" method="post" enctype="multipart/form-data">
-
-                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                    <button class="btn btn-primary" type="submit" name="confirmBtn" id="confirmBtn">Confirm</button>
-                                </form>
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary" type="submit" name="confirmBtn" id="confirmBtn">Confirm</button>
                             </div>
                         </div>
                     </div>
