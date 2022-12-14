@@ -17,7 +17,7 @@ class TicketFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->name(),
+            'ticket_title' => fake()->name(),
             'creator_id' =>  mt_rand(1, 10),
             'body' => fake()->text(),
             'status_ticket' =>  mt_rand(0, 3),

@@ -28,7 +28,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Tables
+             
             </div>
             
             <!-- Nav Item - Pages Collapse Menu -->
@@ -72,9 +72,9 @@
 
 
             
-            <li class="nav-item {{ ($active) === "my ticket" ? 'active' : '' }}">
+            <li class="nav-item {{ ($active) === "myticket" ? 'active' : '' }}">
             
-                <a class="nav-link" href='/allusers'>
+                <a class="nav-link" href='/dashboard/myticket'>
                      <i class="fas fa-fw fa-wrench"></i>
                     <span>My Ticket</span>
                 </a>

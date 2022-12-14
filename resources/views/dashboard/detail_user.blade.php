@@ -15,7 +15,7 @@
                             <div class="col-lg-6">
                                 <div class="about-text go-to">
                                     <h3 class="dark-color">About Me</h3>
-                                    <h6 class="theme-color lead"></h6>
+                                    <h6 class="theme-color lead">{{ $user->position->name }}</h6>
                                     <p>{{ $user->bio }}</p>
                                     <div class="row about-list">
                                         <div class="col-md-6">
@@ -36,9 +36,11 @@
                                                 <p>{{ $user->age }} Yr</p>
                                             </div>
                                             <div class="media">
-                                               
+                                               @if (auth()->user()->position->name === "CEO")
+                                                   
                                                     <a href=""><button type="button" class="btn btn-primary">Edit User</button></a>
-
+                                               
+@endif
                                                 
 
                                             </div>
@@ -67,8 +69,12 @@
                                                 
                                                     <input type="hidden" id="id" value="" />
                                                     <input type="hidden" id="name" value="" />
+                                               @if (auth()->user()->position->name === "CEO")
+
                                                     <button id="deleteBtn" data-toggle="modal" data-target="#delete" class="btn btn-danger btn-icon-split">
                                                         <span class="text">Delete User</span></button>
+@endif
+
                                               
                                             </div>
                                         </div>

@@ -9,6 +9,9 @@ class Ticket extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
+
     public function creator()
     {
         return $this->belongsTo(User::class);

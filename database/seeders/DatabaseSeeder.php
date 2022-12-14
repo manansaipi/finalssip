@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Position::create([
-            'name' => 'It Employee',
+            'name' => 'IT Employee',
 
         ]);
 

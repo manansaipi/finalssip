@@ -25,7 +25,7 @@
                                             <th>Position</th>
                                             <th>Country</th>
                                             <th>Age</th>
-                                            <th>Action</th>
+                                            <th style="text-align: center;">Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -35,7 +35,7 @@
                                             <th>Position</th>
                                             <th>Country</th>
                                             <th>Age</th>
-                                            <th>Action</th>
+                                            <th style="text-align: center;">Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
