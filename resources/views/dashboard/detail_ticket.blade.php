@@ -87,7 +87,7 @@
                                                         @endif
                                                     @endif
                                             </div>
-
+                                    @if(auth()->user()->id === $ticket->creator_id)
                                     <?php if ($ticket->status_ticket == '2'): ?>
                                         <h6 class="dark-color"><hr></h6>
                                         <div>
@@ -99,6 +99,7 @@
                                             <p>{{ $ticket->feedback }}</p>
                                         </div>
                                     <?php endif; ?>
+                                    @endif
                                         </div>
                                         <div class="col-md-6">
                                             <div class="media">

@@ -1,8 +1,19 @@
+@extends('dashboard.table_all_users')
 
-@extends('dashboard.layouts.main')
 
-@section('page_content')
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+@section('edit_user')
+
+<script>
+    function scrollToBottom() {
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+    history.scrollRestoration = "manual";
+    window.onload = scrollToBottom;
+  </script>
+    <!-- Begin Page Content -->
+              
+
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
           <div class="container">
             <div class="row flex-lg-nowrap">
               <div class="col-12 col-lg-auto mb-3" style="width: 210px;">
@@ -33,11 +44,11 @@
                             </div>
                             <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                               <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ auth()->user()->name }}</h4>
-                                <p class="mb-0">{{ "@".auth()->user()->username }}</p>
+                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ $edit_user->name }}</h4>
+                                <p class="mb-0">{{ "@".$edit_user->username }}</p>
                                 <div class="text-muted"><small></small>
                                 </div>
-                               <form action="/dashboard/users/{{ auth()->user()->id }}" method="post">
+                               <form action="/dashboard/users/{{ $edit_user->id }}" method="post">
                                 @method('put')
                                       @csrf 
                                   <div class="mt-2">
@@ -47,7 +58,7 @@
                                   </div>
                               </div>
                               <div class="text-center text-sm-right">
-                                <span class="badge badge-secondary">{{ auth()->user()->position->name }}</span>
+                                <span class="badge badge-secondary">{{ $edit_user->position->name }}</span>
                                 <div class="text-muted"><small></small></div>
                               </div>
                             </div>
@@ -64,7 +75,7 @@
                                     <div class="col">
                                       <div class="form-group">
                                         <label>Full Name</label>
-                                        <input class="form-control @error('name')is-invalid"@enderror type="text" name="name" placeholder="Full Name" value="{{ old('name',  auth()->user()->name) }}" required>
+                                        <input class="form-control @error('name')is-invalid"@enderror type="text" name="name" placeholder="Full Name" value="{{ old('name', $edit_user->name) }}" required>
                                         @error('name')
                                         <p style="color: red; font-style: italic;">
                                         {{ $message }}
@@ -77,7 +88,7 @@
                                     <div class="col">
                                       <div class="form-group">
                                         <label>Username</label>
-                                        <input class="form-control @error('username')is-invalid"@enderror" type="text" name="username" placeholder="Username" value="{{old('username',  auth()->user()->username)}}" required>
+                                        <input class="form-control @error('username')is-invalid"@enderror" type="text" name="username" placeholder="Username" value="{{old('username',  $edit_user->username)}}" required>
                                      @error('username')
                                         <p style="color: red; font-style: italic;">
                                         {{ $message }}
@@ -93,23 +104,23 @@
                                     <div class="col">
                                       <div class="form-group">
                                       
-                                          {{-- <label for="position">Position :</label>
+                                          <label for="position">Position :</label>
                                           <select ty name="position" id="position">
                                           @foreach ($positions as $position)
-                                          @if (auth()->user()->position->id == $position->id)
+                                          @if ($edit_user->position->id == $position->id)
                                               <option value="{{ $position->id }}" selected>{{ $position->name }}</option>
                                           @else
                                               <option value="{{ $position->id }}">{{ $position->name }}</option>
                                           @endif
                                           @endforeach
                                             
-                                          </select> --}}
+                                          </select>
                                       
                                         <div class="form-group">
                                           <label for="country">Country</label>
                                           <select id="country" name="country" class="form-control">
                                             @foreach ($countries as $country)
-                                          @if (auth()->user()->country->id == $country->id)
+                                          @if ($edit_user->country->id == $country->id)
                                               <option value="{{ $country->id }}" selected>{{ $country->name }}</option>
                                           @else
                                               <option value="{{ $country->id }}">{{ $country->name }}</option>
@@ -122,7 +133,7 @@
                                             
                                          <?php global $age; ?>
                                           @for ($age = 10; $age < 40; $age++)
-                                          @if (auth()->user()->age == $age)
+                                          @if ($edit_user->age == $age)
                                               <option value="{{ $age }}" selected>{{ $age }}</option>
                                           @else
                                               <option value="{{ $age }}">{{ $age }}</option>
@@ -139,13 +150,13 @@
                                     <div class="col">
                                       <div class="form-group">
                                         <label>Instagram</label>
-                                        <input class="form-control" type="text" name="instagram" placeholder="@instagram" value="@if(auth()->user()->instagram == NULL)@else {{ old('instagram',"@".auth()->user()->instagram) }} @endif">
+                                        <input class="form-control" type="text" name="instagram" placeholder="@instagram" value="@if($edit_user->instagram == NULL)@else {{ old('instagram',"@".$edit_user->instagram) }} @endif">
                                       </div>
                                     </div>
                                     <div class="col">
                                       <div class="form-group">
                                         <label>GitHub</label>
-                                        <input class="form-control" type="text" name="github" placeholder="@github" value="@if(auth()->user()->github == NULL)@else {{ old('github',"@".auth()->user()->github) }} @endif">
+                                        <input class="form-control" type="text" name="github" placeholder="@github" value="@if($edit_user->github == NULL)@else {{ old('github',"@".$edit_user->github) }} @endif">
                                       </div>
                                     </div>
                                   </div>
@@ -153,7 +164,7 @@
                                     <div class="col">
                                       <div class="form-group">
                                         <label for="birthday">Birthday:</label>
-                                        <input type="date" id="birthday" value="{{ old('birthday', auth()->user()->birthday) }}" name="birthday" required>
+                                        <input type="date" id="birthday" value="{{ old('birthday', $edit_user->birthday) }}" name="birthday" required>
                                       </div>
                                     </div>
                                   </div>
@@ -161,7 +172,7 @@
                                     <div class="col">
                                       <div class="form-group">
                                         <label>About</label>
-                                        <textarea class="form-control" rows="5" name="bio" placeholder="My Bio">{{ old('bio', auth()->user()->bio) }}</textarea>
+                                        <textarea class="form-control" rows="5" name="bio" placeholder="My Bio">{{ old('bio', $edit_user->bio) }}</textarea>
                                       </div>
                                     </div>
                                   </div>
@@ -171,13 +182,13 @@
                                       </div>
                                     </div>
                                      <div class="row">
-                                      <div class="col d-flex justify-content-end">
+                                        <div class="col d-flex justify-content-end">
                                         <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#confirm">Save Changes</button>
-                                      </div>
+                                        </div>
+                                    </div>       
                                   </div>
                                 </div>
                               </div>
-                             
                               {{-- <div class="row">
                                 <div class="col-12 col-sm-6 mb-3">
                                   <div class="mb-2"><b>Change Password</b></div>
@@ -226,8 +237,7 @@
                                   </div>
                                 </div>
                               </div> --}}
-                              
-                              </div>       
+                             
                             </div>
                           </div>
                         </div>
@@ -273,4 +283,6 @@
                     </div>
                 </div>
     </form>
+            <!-- End of Main Content -->
 @endsection
+

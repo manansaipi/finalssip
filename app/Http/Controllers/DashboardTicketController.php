@@ -44,8 +44,6 @@ class DashboardTicketController extends Controller
         ]);
         $validatedData['creator_id'] = auth()->user()->id;
         $validatedData['status_ticket'] = 0;
-        $validatedData['solvedby_id'] = 9999;
-        $validatedData['feedback'] = "";
         Ticket::create($validatedData);
 
         return redirect('/dashboard/myticket')->with('success', "Your ticket has been added!");

@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'abdul.saipi@stduent.president.ac.id',
         //     'password' => bcrypt('12345')
         // ]);
-        User::factory(10)->create();
+        User::factory(8)->create();
 
         Position::create([
             'name' => 'CEO',
@@ -44,9 +44,9 @@ class DatabaseSeeder extends Seeder
         Position::create([
             'name' => 'Employee',
         ]);
-        Ticket::factory(20)->create();
+        Ticket::factory(19)->create();
         Country::create([
-            'name' => 'Afganistan',
+            'name' => 'Afghanistan',
         ]);
         Country::factory(200)->create();
         $countries = [

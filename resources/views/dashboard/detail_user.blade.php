@@ -36,11 +36,11 @@
                                                 <p>{{ $user->age }} Yr</p>
                                             </div>
                                             <div class="media">
-                                               @if (auth()->user()->position->name === "CEO")
-                                                   
+                                               @if (auth()->user()->position->name === "CEO" && auth()->user()->id !== $user->id)
                                                     <a href=""><button type="button" class="btn btn-primary">Edit User</button></a>
-                                               
-@endif
+                                               @elseif(auth()->user()->id === $user->id)
+                                                    <a href="/dashboard/myprofile"><button type="button" class="btn btn-primary">Edit Profile</button></a>
+                                                @endif
                                                 
 
                                             </div>
@@ -55,25 +55,24 @@
                                             </div>
                                             <div class="media">
                                                 <label>Country</label>
-                                                <p>{{ $user->country }}</p>
+                                                <p>{{ $user->country->name }}</p>
                                             </div>
                                             <div class="media">
                                                 <label>Instagram</label>
-                                                <p>@ {{ $user->instagram }}</p>
+                                                <p>{{ "@".$user->instagram }}</p>
                                             </div>
                                             <div class="media">
                                                 <label>GitHub</label>
-                                                <p>@ {{ $user->github }}</p>
+                                                <p>{{ "@".$user->github }}</p>
                                             </div>
                                             <div class="media">
                                                 
                                                     <input type="hidden" id="id" value="" />
                                                     <input type="hidden" id="name" value="" />
-                                               @if (auth()->user()->position->name === "CEO")
-
+                                               @if (auth()->user()->position->name === "CEO" && auth()->user()->id !== $user->id)
                                                     <button id="deleteBtn" data-toggle="modal" data-target="#delete" class="btn btn-danger btn-icon-split">
                                                         <span class="text">Delete User</span></button>
-@endif
+                                                @endif
 
                                               
                                             </div>

@@ -44,18 +44,23 @@
                                         <tr>
                                             <td>{{ $user->id  }}</td>
                                             <td>{{ $user->name }}</td>
-                                            <td>{{ $user->email }}</td>
                                             <td>{{ $user->position->name }}</td>
+                                            <td>{{ $user->country->name }}</td>
                                             <td>{{ $user->age }}</td>
                                            <td style="text-align: center;">
                                                     <a href="/dashboard/users/{{ $user->id }}" class="btn btn-info btn-icon-split btn-sm">
                                                         <span class="text">Detail</span>
                                                     </a>
-                                                  
-                                                        <a href="" class="btn btn-primary btn-icon-split btn-sm">
+                                                    @if (auth()->user()->position->name == "CEO" && auth()->user()->id != $user->id)
+                                                        <a href="/dashboard/users/{{ $user->id }}/edit" class="btn btn-primary btn-icon-split btn-sm">
                                                             <span class="text">Edit</span>
                                                         </a>
-
+                                                    @elseif(auth()->user()->id == $user->id)
+                                                        <a href="/dashboard/myprofile" class="btn btn-primary btn-icon-split btn-sm">
+                                                            <span class="text">Edit</span>
+                                                        </a>
+                                                  @endif
+                                                      
                                              
                                                 </td>
                                         </tr>
@@ -70,6 +75,8 @@
                 <!-- /.container-fluid -->
 
             </div>
+
+             @yield('edit_user')
             <!-- End of Main Content -->
 @endsection
 

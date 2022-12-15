@@ -55,7 +55,7 @@
                                             <td><?= $number+=1 ?></td>
                                             <td>{{ $ticket->id }}</td>
                                             <td>{{ $ticket->ticket_title }}</td>
-                                            <td>{{ $ticket->updated_at }}</td>
+                                            <td>{{ $ticket->updated_at->format('Y-m-d') }}</td>
                                            
                                             <td><span class="badge badge-<?php 
                                             switch ($ticket->status_ticket){
@@ -87,7 +87,7 @@
                                                     echo "Canceled";
                                                     break;
                                             } ?> </span></td>
-                                             <?php if(auth()->user()->position->name === "CEO" || auth()->user()->position->name === "IT Employee") :?>    
+                                             <?php if(auth()->user()->position->name === "CEO" && auth()->user()->id != $ticket->creator_id|| auth()->user()->position->name === "IT Employee" && auth()->user()->id != $ticket->creator_id) :?>    
                                            <td style="text-align: center;">
                                                     <a href="/dashboard/tickets/{{ $ticket->id }}" class="btn btn-<?php 
                                             switch ($ticket->status_ticket){
