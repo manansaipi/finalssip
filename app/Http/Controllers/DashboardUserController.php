@@ -128,6 +128,7 @@ class DashboardUserController extends Controller
         } else { //edit user profile by CEO
             $rules = [
                 'name' => 'required|max:125',
+                'image' => 'image'
             ];
             if ($request->username != $user->username) {
                 $rules['username'] = ['required', 'min:4', 'max:25', 'unique:users'];
@@ -140,7 +141,12 @@ class DashboardUserController extends Controller
             $validatedData['github'] = Str::lower(clean($request->github));
             $validatedData['birthday'] = $request->birthday;
             $validatedData['bio'] = $request->bio;
-
+            if ($request->file('image')) { //user change image
+                if ($user->image && $user->image != 'user-images/undraw_profile.svg') {
+                    Storage::delete($user->image);
+                }
+                $validatedData['image'] = $request->file('image')->store('user-images');
+            }
             User::where('id', $user->id)
                 ->update($validatedData);
             return redirect('/dashboard/users')->with('success', "Profile updated!");

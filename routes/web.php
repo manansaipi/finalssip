@@ -77,6 +77,33 @@ Route::get('/dashboard/myticket/{ticket:id}', function (Ticket $ticket) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/home2', function () {
     return view('home_', [
         'title' => 'Home',

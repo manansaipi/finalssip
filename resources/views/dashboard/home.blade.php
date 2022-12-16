@@ -1,6 +1,24 @@
 @extends('dashboard.layouts.main')
 
 @section('page_content')
+<?php
+$canceled = $canceled_tickets;
+$waiting = $waiting_tickets;
+$inProgress = $inProgress_tickets;
+$solved = $solved_tickets;
+
+
+
+$totalTicket = count($canceled) + count($waiting) + count($inProgress) + count($solved);
+
+$percentageCanceledTicket = count($canceled) / $totalTicket * 100;
+$percentageWaitingTicket = count($waiting) / $totalTicket * 100;
+$percentageInProgressTicket = count($inProgress) / $totalTicket * 100;
+$percentageSolvedTicket = count($solved) / $totalTicket * 100;
+
+
+
+?>
     <!-- Begin Page Content -->
                 <div class="container-fluid">
 
@@ -117,34 +135,61 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="small font-weight-bold">Server Migration <span
-                                            class="float-right">20%</span></h4>
+                                    <h4 class="small font-weight-bold">Canceled Ticket <span
+                                            class="float-right">
+                                            
+                                            @if ($percentageCanceledTicket !== 100)
+                                            {{ $percentageCanceledTicket . "%" }}      
+                                            @else
+                                            All Ticket are Canceled                                       
+                                            @endif
+                                            
+                                            </span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $percentageCanceledTicket }}%"
                                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Sales Tracking <span
-                                            class="float-right">40%</span></h4>
+                                    <h4 class="small font-weight-bold">Waiting Ticket <span
+                                            class="float-right">
+                                            
+                                             @if ($percentageWaitingTicket !== 100)
+                                            {{ $percentageWaitingTicket . "%" }}      
+                                            @else
+                                            All Ticket are Waiting                                      
+                                            @endif
+                                            
+                                            </span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{ $percentageWaitingTicket }}%"
                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Customer Database <span
-                                            class="float-right">60%</span></h4>
+                                   
+                                    <h4 class="small font-weight-bold">In Progress Ticket <span
+                                            class="float-right">
+                                            
+                                            @if ($percentageInProgressTicket !== 100)
+                                            {{ $percentageInProgressTicket . "%" }}      
+                                            @else
+                                            All Ticket are In Progress                                       
+                                            @endif
+                                            
+                                            </span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
-                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Payout Details <span
-                                            class="float-right">80%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: {{ $percentageInProgressTicket }}%"
                                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Account Setup <span
-                                            class="float-right">Complete!</span></h4>
+                                    <h4 class="small font-weight-bold">Solved Ticket <span
+                                            class="float-right">
+                                            
+                                            @if ($percentageSolvedTicket !== 100)
+                                            {{ $percentageSolvedTicket . "%" }}      
+                                            @else
+                                            Complete!                                          
+                                            @endif
+                                            
+                                            </span></h4>
                                     <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: {{ $percentageSolvedTicket }}%"
                                             aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
@@ -157,7 +202,7 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Ticket Sources</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -213,12 +258,7 @@
 @endsection
 
 @section('custom_script')
-                    <?php
-                    $canceled = $canceled_tickets;
-                    $waiting = $waiting_tickets;
-                    $inProgress = $inProgress_tickets;
-                    $solved = $solved_tickets;
-                    ?>
+                   
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script>
               const ctx = document.getElementById('myChart');
@@ -236,6 +276,7 @@
                                 '#e74a3b',
                                 ],
                             borderWidth: 1,
+                            label: 'Total ',
                     }]
                     },
                     options: {

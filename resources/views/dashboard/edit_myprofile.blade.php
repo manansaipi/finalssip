@@ -29,9 +29,7 @@
                                   @if (auth()->user()->image)
                                       <img class="img-preview" src="http://finalssip.test/storage/{{auth()->user()->image}}"  width="140" height="140">
                                   @else
-                                    
                                      <img class="img-preview img-fluid">
-
                                   @endif
                                   </span>
                                 </div>
@@ -283,7 +281,12 @@
                     </div>
                 </div>
     </form>
-     <script>
+     
+@endsection
+
+@section('custom_script')
+   
+<script>
       
       function previewImage() {
         const image = document.querySelector('#image');
@@ -300,9 +303,5 @@
       }
       
     </script>
-@endsection
-
-@section('custom_script')
-   
-
+    
 @endsection

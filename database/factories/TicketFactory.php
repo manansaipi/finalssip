@@ -20,6 +20,7 @@ class TicketFactory extends Factory
             'ticket_title' => fake()->name(),
             'creator_id' =>  mt_rand(262021001, 262021011),
             'body' => fake()->text(),
+            // 'status_ticket' =>  2,
             'status_ticket' =>  mt_rand(0, 3),
             'solvedby_id' =>  mt_rand(262021001, 262021011),
             'feedback' => fake()->text()
