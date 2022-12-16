@@ -24,12 +24,12 @@ class UserFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'bio' => fake()->text(),
             'age' =>  mt_rand(15, 30),
-            'country_id' => mt_rand(1, 100),
+            'country_id' => mt_rand(1, 200),
             'instagram' => fake()->userName(),
             'github' => fake()->userName(),
             'birthday' => now(),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => bcrypt('aaaaa'),            // password
             'remember_token' => Str::random(10),
         ];
     }

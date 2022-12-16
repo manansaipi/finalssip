@@ -37,7 +37,7 @@
                                             </div>
                                             <div class="media">
                                                @if (auth()->user()->position->name === "CEO" && auth()->user()->id !== $user->id)
-                                                    <a href=""><button type="button" class="btn btn-primary">Edit User</button></a>
+                                                    <a href="/dashboard/users/{{ $user->id }}/edit"><button type="button" class="btn btn-primary">Edit User</button></a>
                                                @elseif(auth()->user()->id === $user->id)
                                                     <a href="/dashboard/myprofile"><button type="button" class="btn btn-primary">Edit Profile</button></a>
                                                 @endif
@@ -83,7 +83,11 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="about-avatar">
-                                  
+                                  @if ($user->image)
+                                     <img src="http://finalssip.test/storage/{{$user->image}}"  width="500" height="500">
+                                  @else
+                                    <img style="object-fit: cover;" src="/img/undraw_profile.svg" width="500" height="500">
+                                  @endif
                                 </div>
                             </div>
                         </div>
@@ -92,4 +96,30 @@
 
             </div>
             </section>
+
+               {{-- Modal DELETE --}}
+             <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete User ?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Delete User" below to delete user.</div>
+                    {{-- <form class="form" action="" method="post" enctype="multipart/form-data"> --}}
+                        <div class="modal-footer">
+                            <input type="hidden" id="idUsr" name="idUsr">
+                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <form action="/dashboard/users/{{ $user->id }}" method="post">
+                                @method('delete')
+                                @csrf
+                                    <button class="btn btn-danger"" name="deleteButtn" id="deleteButton">Delet User</button>
+                            </form>
+                    {{-- </form> --}}
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->id()->from(262021001);
             $table->foreignId('position_id')->default(3);
             $table->string('name');
             $table->string('username')->unique();
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->foreignId('country_id')->default(1);
             $table->string('instagram')->nullable();
             $table->string('github')->nullable();
+            $table->string('image')->default("user-images/undraw_profile.svg");
             $table->rememberToken();
             $table->timestamps();
         });

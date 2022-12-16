@@ -24,12 +24,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // User::create([
-        //     'name' => 'Abdul Mannan',
-        //     'email' => 'abdul.saipi@stduent.president.ac.id',
-        //     'password' => bcrypt('12345')
-        // ]);
-        User::factory(8)->create();
+        User::create([
+            'name' => 'Abdul Mannan Saipi',
+            'username' => 'manansaipi',
+            'position_id' => 1,
+            'email' => 'abdul.saipi@student.president.ac.id',
+            'password' => bcrypt('aaaaa'),
+            'bio' => 'As the CEO of Ben Academy, Im responsible for running all facets of the business. I have a proven executive management track record and over 20 years of experience driving sales growth in the technology industry..',
+            'country_id' => mt_rand(1, 200),
+            'instagram' => "manansaipi",
+            'github' => "manansaipi",
+            'birthday' => now(),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+            'age' =>  18,
+        ]);
+        User::factory(10)->create();
 
         Position::create([
             'name' => 'CEO',
@@ -44,7 +54,7 @@ class DatabaseSeeder extends Seeder
         Position::create([
             'name' => 'Employee',
         ]);
-        Ticket::factory(19)->create();
+        Ticket::factory(20)->create();
         Country::create([
             'name' => 'Afghanistan',
         ]);

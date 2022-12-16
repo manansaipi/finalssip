@@ -26,23 +26,33 @@
                               <div class="mx-auto" style="width: 140px;">
                                 <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
                                   <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">
-                                    <img src="img/" width="140" height="140">
+                                  @if (auth()->user()->image)
+                                      <img class="img-preview" src="http://finalssip.test/storage/{{auth()->user()->image}}"  width="140" height="140">
+                                  @else
+                                    
+                                     <img class="img-preview img-fluid">
+
+                                  @endif
                                   </span>
                                 </div>
                               </div>
                             </div>
+                          
                             <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                               <div class="text-center text-sm-left mb-2 mb-sm-0">
                                 <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ auth()->user()->name }}</h4>
                                 <p class="mb-0">{{ "@".auth()->user()->username }}</p>
                                 <div class="text-muted"><small></small>
                                 </div>
-                               <form action="/dashboard/users/{{ auth()->user()->id }}" method="post">
+                               <form action="/dashboard/users/{{ auth()->user()->id }}" method="post" enctype="multipart/form-data">
                                 @method('put')
                                       @csrf 
                                   <div class="mt-2">
-                                    <input class="btn btn-primary" type="file" name="image" />
+                                    <input class="btn btn-primary" type="file" id="image" name="image" onchange="previewImage()"/>
                                     <i class="fa fa-fw fa-camera"></i>
+                                    @error('image')
+                                    <p style="color: red; font-style: italic;">{{ $message }}</p>
+                                    @enderror
                                     <span>Change Photo</span>
                                   </div>
                               </div>
@@ -273,4 +283,26 @@
                     </div>
                 </div>
     </form>
+     <script>
+      
+      function previewImage() {
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.img-preview');
+
+        imgPreview.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+    
+        oFReader.onload = function(oFREvent) {
+          imgPreview.src = oFREvent.target.result;
+        }
+      }
+      
+    </script>
+@endsection
+
+@section('custom_script')
+   
+
 @endsection

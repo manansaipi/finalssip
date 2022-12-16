@@ -24,7 +24,7 @@
                                                 <p>{{ $ticket->ticket_title }}</p>
                                             </div>
                                             <div class="media">
-                                                <label>No Ticket</label>
+                                                <label>Ticket ID</label>
                                                 <p>{{ $ticket->id }}</p>
                                             </div>
                                             <div class="media">
@@ -133,7 +133,12 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="about-avatar">
-                                  
+                                @if ($ticket->image)
+                                     <img src="http://finalssip.test/storage/{{$ticket->image}}" width="500" height="500">
+                                @else
+                                    <img src="https://source.unsplash.com/500x500?{{ $ticket->name }}" alt="{{ $ticket->name }}">
+                                @endif
+                                   
                                 </div>
                             </div>
                         </div>

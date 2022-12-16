@@ -31,7 +31,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>No Ticket</th>
+                                            <th>Ticket ID</th>
                                             <th>Problem</th>
                                             <th>Date Created</th>
                                             <th>Status</th>
@@ -41,7 +41,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>No</th>
-                                            <th>No Ticket</th>
+                                            <th>Ticket ID</th>
                                             <th>Problem</th>
                                             <th>Date Created</th>
                                             <th>Status</th>

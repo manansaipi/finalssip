@@ -39,7 +39,11 @@ Route::post('/register', [RegisterController::class, 'store'])->middleware('gues
 Route::get('/home', function () {
     return view('dashboard.home', [
         'title' => 'Home',
-        'active' => 'home'
+        'active' => 'home',
+        'waiting_tickets' => Ticket::where('status_ticket', 0)->get(),
+        'inProgress_tickets' => Ticket::where('status_ticket', 1)->get(),
+        'solved_tickets' => Ticket::where('status_ticket', 2)->get(),
+        'canceled_tickets' => Ticket::where('status_ticket', 3)->get(),
     ]);
 })->middleware('auth');
 

@@ -31,7 +31,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>No Ticket</th>
+                                            <th>Ticket ID</th>
                                             <th>Problem</th>
                                             <th>Date Created</th>
                                             <th>Status</th>
@@ -41,7 +41,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>No</th>
-                                            <th>No Ticket</th>
+                                            <th>Ticket ID</th>
                                             <th>Problem</th>
                                             <th>Date Created</th>
                                             <th>Status</th>
@@ -55,7 +55,7 @@
                                             <td><?= $number+=1 ?></td>
                                             <td>{{ $ticket->id }}</td>
                                             <td>{{ $ticket->ticket_title }}</td>
-                                            <td>{{ $ticket->updated_at }}</td>
+                                            <td>{{ $ticket->updated_at->format('Y-m-d') }}</td>
                                             <td><span class="badge badge-<?php 
                                             switch ($ticket->status_ticket){
                                                     case 0 :
@@ -129,7 +129,7 @@
             </div>
 
             {{-- Modal ADD TICKET --}}
-            <form method="post" action="/dashboard/tickets">
+            <form method="post" action="/dashboard/tickets" enctype="multipart/form-data"> 
             @csrf
             <div class="modal fade" id="addTicket" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -146,12 +146,11 @@
                             <div class="form-group">
                                 <label><b>Complaint</b></label>
                                 <input class="form-control @error('ticket_title') is-invalid @enderror" type="text" name="ticket_title" required autofocus value="{{ old('ticket_title') }}"/>
-                                <div class="inavlid-feedback">
-                                @error('ticket_title')
-                                {{ $message }}
-                                @enderror
-                                </div>
                                 
+                                @error('ticket_title')
+                               <p style="color: red; font-style: italic;">{{ $message }}</p>
+                                @enderror
+                               
                             </div>
                         </div>
                     </div>
@@ -161,13 +160,19 @@
                                 <label><b>Description</b></label>
                                 <textarea class="form-control @error('body') is-invalid @enderror" rows="3" name="body" required value="{{ old('body') }}"></textarea>
                                 @error('body')
-                                {{ $message }}
+                                <p style="color: red; font-style: italic;">{{ $message }}</p>
                                 @enderror
                             </div>
+                           
+                            
+                         
+                           
                         </div>
                     </div>
-                    {{-- <input class="" type="file" name="image" /> --}}
-
+                    <input class="" type="file" name="image" />
+                    @error('image')
+                     <p style="color: red; font-style: italic;">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>

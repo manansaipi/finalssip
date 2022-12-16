@@ -38,10 +38,17 @@ class DashboardTicketController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->file('image')->store('post-image');
         $validatedData = $request->validate([
             'ticket_title' => 'required|max:255',
             'body' => 'required',
+            'image' => 'image'
         ]);
+
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('ticket-images');
+        }
+
         $validatedData['creator_id'] = auth()->user()->id;
         $validatedData['status_ticket'] = 0;
         Ticket::create($validatedData);
@@ -85,7 +92,8 @@ class DashboardTicketController extends Controller
     public function update(Request $request, Ticket $ticket)
     {
 
-        if (auth()->user()->id == $ticket->creator_id) {
+        if (auth()->user()->id == $ticket->creator_id) { //update my ticket
+            //cancel my ticket
             if ($request->status_ticket == 3) {
                 $validatedData['status_ticket'] = 3;
                 Ticket::where('id', $ticket->id)
@@ -96,21 +104,17 @@ class DashboardTicketController extends Controller
                 'ticket_title' => 'required|max:255',
                 'body' => 'required',
             ]);
-
+            //edit my ticket
             Ticket::where('id', $ticket->id)
                 ->update($validatedData);
-            $validatedData['status_ticket'] = 3;
-
-
-
             return redirect('/dashboard/myticket')->with('success', "Your ticket has been updated!");
-        } else {
-            $validatedData['status_ticket'] = 1;
+        } else {  //update user ticket by IT Employee or CEO
+            $validatedData['status_ticket'] = 1; //CONFIRM TICKET
             if ($ticket->status_ticket == 1) {
                 $validatedData = $request->validate([
                     'feedback' => 'required',
                 ]);
-                $validatedData['status_ticket'] = 2;
+                $validatedData['status_ticket'] = 2; //SOLVED TICKET
                 $validatedData['solvedby_id'] = auth()->user()->id;
                 Ticket::where('id', $ticket->id)
                     ->update($validatedData);
@@ -130,9 +134,8 @@ class DashboardTicketController extends Controller
      */
     public function destroy(Ticket $ticket)
     {
-
         Ticket::destroy($ticket->id);
 
-        return redirect('/dashboard/tickets')->with('deleted', "Your ticket has been deleted!");
+        return redirect('/dashboard/tickets')->with('deleted', "Ticket has been deleted!");
     }
 }

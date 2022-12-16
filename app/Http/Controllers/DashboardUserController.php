@@ -4,10 +4,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Position;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\DashboardTicketController;
+
 
 function clean($string)
 {
@@ -94,13 +98,16 @@ class DashboardUserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        if (auth()->user()->id == $user->id) {
+
+        if (auth()->user()->id == $user->id) { // edit my profile
             $rules = [
                 'name' => 'required|max:125',
+                'image' => 'image'
             ];
-            if ($request->username != $user->username) {
+            if ($request->username != $user->username) { //user change username
                 $rules['username'] = ['required', 'min:4', 'max:25', 'unique:users'];
             }
+
             $validatedData = $request->validate($rules);
             $validatedData['country_id'] = $request->country;
             $validatedData['age'] = $request->age;
@@ -108,11 +115,17 @@ class DashboardUserController extends Controller
             $validatedData['github'] = Str::lower(clean($request->github));
             $validatedData['birthday'] = $request->birthday;
             $validatedData['bio'] = $request->bio;
+            if ($request->file('image')) { //user change image
+                if ($user->image && $user->image != 'user-images/undraw_profile.svg') {
 
+                    Storage::delete($user->image);
+                }
+                $validatedData['image'] = $request->file('image')->store('user-images');
+            }
             User::where('id', auth()->user()->id)
                 ->update($validatedData);
             return redirect('/home')->with('success', "Profile updated!");
-        } else {
+        } else { //edit user profile by CEO
             $rules = [
                 'name' => 'required|max:125',
             ];
@@ -142,6 +155,13 @@ class DashboardUserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+
+        $tickets = Ticket::where('creator_id', $user->id)->get(); //get user ticket
+        foreach ($tickets as $ticket) {
+            Ticket::destroy($ticket->id); //deleting user ticket
+        }
+        User::destroy($user->id);
+
+        return redirect('/dashboard/users')->with('deleted', "User has been deleted!");
     }
 }

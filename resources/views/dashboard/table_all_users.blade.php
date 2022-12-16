@@ -11,7 +11,15 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Table of Employee</h1>
                    
-
+                    @if (session()->has('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @elseif (session()->has('deleted'))
+                        <div class="alert alert-danger" role="alert">
+                        {{ session('deleted') }}
+                        </div>
+                    @endif
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         
