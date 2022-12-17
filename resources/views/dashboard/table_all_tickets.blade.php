@@ -9,7 +9,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Table of Employee</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Table of Tickets</h1>
                     <!-- Begin Page Content -->
     
                     @if (session()->has('success'))

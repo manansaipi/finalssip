@@ -44,6 +44,13 @@ Route::get('/home', function () {
         'inProgress_tickets' => Ticket::where('status_ticket', 1)->get(),
         'solved_tickets' => Ticket::where('status_ticket', 2)->get(),
         'canceled_tickets' => Ticket::where('status_ticket', 3)->get(),
+
+
+        'waiting_ticketsMy' => Ticket::where('status_ticket', 0)->where('creator_id', auth()->user()->id)->get(),
+        'inProgress_ticketsMy' => Ticket::where('status_ticket', 1)->where('creator_id', auth()->user()->id)->get(),
+        'solved_ticketsMy' => Ticket::where('status_ticket', 2)->where('creator_id', auth()->user()->id)->get(),
+        'canceled_ticketsMy' => Ticket::where('status_ticket', 3)->where('creator_id', auth()->user()->id)->get(),
+
     ]);
 })->middleware('auth');
 
