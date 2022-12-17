@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardTicketController extends Controller
 {
@@ -109,6 +110,9 @@ class DashboardTicketController extends Controller
                 ->update($validatedData);
             return redirect('/dashboard/myticket')->with('success', "Your ticket has been updated!");
         } else {  //update user ticket by IT Employee or CEO
+            if (auth()->guest() || auth()->user()->position->name == "Employee") {
+                abort(403);
+            }
             $validatedData['status_ticket'] = 1; //CONFIRM TICKET
             if ($ticket->status_ticket == 1) {
                 $validatedData = $request->validate([
@@ -134,6 +138,14 @@ class DashboardTicketController extends Controller
      */
     public function destroy(Ticket $ticket)
     {
+
+        if (auth()->guest() || auth()->user()->position->name == "Employee") {
+            abort(403);
+        }
+        //delete old image in the storage when CEO || IT Employee deleting user ticket 
+        if ($ticket->image) {
+            Storage::delete($ticket->image);
+        }
         Ticket::destroy($ticket->id);
 
         return redirect('/dashboard/tickets')->with('deleted', "Ticket has been deleted!");

@@ -79,6 +79,11 @@ class DashboardUserController extends Controller
      */
     public function edit(User $user)
     {
+
+        // $this->authorize('ceo'); //<--- using Gates
+        if (auth()->guest() || auth()->user()->position->name !== "CEO") {
+            abort(403);
+        }
         return view('dashboard.edit_user', [
             'title' => 'All Users',
             'active' => 'all users',
@@ -98,7 +103,6 @@ class DashboardUserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-
         if (auth()->user()->id == $user->id) { // edit my profile
             $rules = [
                 'name' => 'required|max:125',
@@ -116,8 +120,8 @@ class DashboardUserController extends Controller
             $validatedData['birthday'] = $request->birthday;
             $validatedData['bio'] = $request->bio;
             if ($request->file('image')) { //user change image
-                if ($user->image && $user->image != 'user-images/undraw_profile.svg') {
-
+                //delete old photo in the storage when user update their photo profile 
+                if ($user->image && $user->image != 'user-images/undraw_profile.svg') { // && = if old image != default photo profile
                     Storage::delete($user->image);
                 }
                 $validatedData['image'] = $request->file('image')->store('user-images');
@@ -126,6 +130,9 @@ class DashboardUserController extends Controller
                 ->update($validatedData);
             return redirect('/home')->with('success', "Profile updated!");
         } else { //edit user profile by CEO
+            if (auth()->guest() || auth()->user()->position->name !== "CEO") {
+                abort(403);
+            }
             $rules = [
                 'name' => 'required|max:125',
                 'image' => 'image'
@@ -142,7 +149,8 @@ class DashboardUserController extends Controller
             $validatedData['birthday'] = $request->birthday;
             $validatedData['bio'] = $request->bio;
             if ($request->file('image')) { //user change image
-                if ($user->image && $user->image != 'user-images/undraw_profile.svg') {
+                //delete old photo in the storage when updating user photo profile by CEO 
+                if ($user->image && $user->image != 'user-images/undraw_profile.svg') { // && = if old image != default photo profile 
                     Storage::delete($user->image);
                 }
                 $validatedData['image'] = $request->file('image')->store('user-images');
@@ -161,7 +169,9 @@ class DashboardUserController extends Controller
      */
     public function destroy(User $user)
     {
-
+        if (auth()->guest() || auth()->user()->position->name !== "CEO") {
+            abort(403);
+        }
         $tickets = Ticket::where('creator_id', $user->id)->get(); //get user ticket
         foreach ($tickets as $ticket) {
             Ticket::destroy($ticket->id); //deleting user ticket

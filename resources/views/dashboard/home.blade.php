@@ -11,10 +11,10 @@ $solved = $solved_tickets;
 
 $totalTicket = count($canceled) + count($waiting) + count($inProgress) + count($solved);
 
-$percentageCanceledTicket = count($canceled) / $totalTicket * 100;
-$percentageWaitingTicket = count($waiting) / $totalTicket * 100;
-$percentageInProgressTicket = count($inProgress) / $totalTicket * 100;
-$percentageSolvedTicket = count($solved) / $totalTicket * 100;
+$percentageCanceledTicket = round(count($canceled) / $totalTicket * 100);
+$percentageWaitingTicket = round(count($waiting) / $totalTicket * 100);
+$percentageInProgressTicket = round(count($inProgress) / $totalTicket * 100);
+$percentageSolvedTicket = round(count($solved) / $totalTicket * 100);
 
 
 
@@ -267,7 +267,7 @@ $percentageSolvedTicket = count($solved) / $totalTicket * 100;
                     data: {
                         labels: ["Solved Ticket", "In Progress Ticket", "Waiting Ticket", "Canceled Ticket"],
                         datasets: [{
-                            label: 'Total ',
+                            label: 'Total',
                             data: [ {{ count($solved) }},{{ count($inProgress) }},{{ count($waiting)}}, {{ count($canceled) }}],
                             backgroundColor:[
                                 '#1cc88a',
@@ -276,7 +276,6 @@ $percentageSolvedTicket = count($solved) / $totalTicket * 100;
                                 '#e74a3b',
                                 ],
                             borderWidth: 1,
-                            label: 'Total ',
                     }]
                     },
                     options: {
