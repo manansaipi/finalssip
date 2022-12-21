@@ -250,26 +250,7 @@
                       </div>
                     </div>
                   </div>
-
-                  <div class="col-12 col-md-3 mb-3">
-                    <div class="card mb-3">
-                      <div class="card-body">
-                        <div class="px-xl-3">
-                          <button class="btn btn-block btn-secondary" data-toggle="modal" data-target="#logoutModal">
-                            <i class="fa fa-sign-out"></i>
-                            <span>Logout</span> 
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-           {{-- MODAL CONFIRM CHANGES --}}
+ {{-- MODAL CONFIRM CHANGES --}}
     
         <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -289,6 +270,25 @@
                     </div>
                 </div>
     </form>
+                  <div class="col-12 col-md-3 mb-3">
+                    <div class="card mb-3">
+                      <div class="card-body">
+                        <div class="px-xl-3">
+                          <button class="btn btn-block btn-secondary" data-toggle="modal" data-target="#logoutModal">
+                            <i class="fa fa-sign-out"></i>
+                            <span>Logout</span> 
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          
             <!-- End of Main Content -->
 @endsection
 @section('custom_script')
