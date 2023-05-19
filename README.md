@@ -1,66 +1,33 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Ticketing Web Application
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+I have created a web-based ticketing application using PHP and Bootstrap. As the creator of this app, I aimed to provide users with a convenient way to manage their tickets and request issue resolutions. Users can sign up for an account and create tickets to report problems. They also have the option to cancel or delete their tickets if needed. Once a ticket is marked as resolved or canceled, users cannot update its details. However, they can still view the ticket status and any feedback provided by admins or IT staff. By implementing these features, I aimed to streamline the ticketing process
 
-## About Laravel
+# Video Demo Ticketing Web Application :
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/X61UqD_2ywQ/0.jpg)](https://www.youtube.com/watch?v=X61UqD_2ywQ) 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+| Name  | Description | Preview |
+| ------------- | ------------- |------------- |
+| Sign up | Users need to Sign up to create an account | ![alt text](./doc/register.png) |
+| Log in | After successfully to regist, users meed to login before entering the dashboard | ![alt text](./doc/login.png) |
+| Dashboard | After log in Users can see all the information about their ticket, because I'm a new users, i don't have any ticket | ![alt text](./doc/new-dashboard.png) |
+| Profile | Users can update their profile and upload their photo profile | ![alt text](./doc/new-profile.png) |
+| Table Employee | Users can see all the employee in Table Employee | ![alt text](./doc/new-employee.png) |
+| Detail Employee | Users can view the detail of the Employee but only Super Admin/CEO can edit and delete the Employee | ![alt text](./doc/new-detail-employee.png) |
+| My Ticket | Users can see all their ticket in my ticket. because i'm haven't create yet so it show 'you don't have any ticket' | ![alt text](./doc/my-ticket.png) |
+| Create Ticket | Users can create a ticket/report a problem and wait to be solved by CEO/IT Employee | ![alt text](./doc/report-prob.png) |
+| Table Ticket | Users can see his ticket in table ticket | ![alt text](./doc/report-prob.png) |
+| Dashboard Information | Users can see their ticket status on the dashbaord | ![alt text](./doc/new-dashboard2.png) |
+| Admin Dashboard | Admin can see all the ticket status in the dashboard | ![alt text](./doc/admin-dashboard.png) |
+| Detail Employee | Admin can update user profile or delete users | ![alt text](./doc/admin-detail-semployee.png) |
+| Delete Employee | Admin can update profile or promote users to become IT Employee or CEO | ![alt text](./doc/promote-user.png) |
+| All Ticket | Admin can see all ticket and solved the ticket | ![alt text](./doc/admin-ticket.png) |
+| Solved Ticket | Admin can solved users ticket and give a feedback to it | ![alt text](./doc/solved-ticket.png) |
+| Status Ticket | After admin solved and gived feedback to the ticket, users can see their ticket status on dashboard changed| ![alt text](./doc/new-dashboard3.png) |
+| See Feedback | Users can see the feedback given by admin in my ticket | ![alt text](./doc/my-ticket.png) |
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
