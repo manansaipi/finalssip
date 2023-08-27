@@ -27,7 +27,7 @@
                                 <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
                                   <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">
                                   @if (auth()->user()->image)
-                                      <img class="img-preview" src="http://finalssip.test/storage/{{auth()->user()->image}}"  width="140" height="140">
+                                      <img class="img-preview" src="/storage/{{auth()->user()->image}}"  width="140" height="140">
                                   @else
                                      <img class="img-preview img-fluid">
                                   @endif

@@ -24,7 +24,6 @@ class RegisterController extends Controller
             'username' => ['required', 'min:4', 'max:25', 'unique:users'],
             'email' => 'required|email|unique:users',
             'password' => 'required|min:5|max:255'
-
         ]);
 
         // $validatedData['password'] = bcrypt($validatedData['password']);

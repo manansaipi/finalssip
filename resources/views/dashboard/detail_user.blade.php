@@ -83,11 +83,9 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="about-avatar">
-                                  @if ($user->image)
-                                     <img src="http://finalssip.test/storage/{{$user->image}}"  width="500" height="500">
-                                  @else
-                                    <img style="object-fit: cover;" src="/img/undraw_profile.svg" width="500" height="500">
-                                  @endif
+
+                                     <img src="/storage/{{$user->image}}"  width="500" height="500">
+
                                 </div>
                             </div>
                         </div>

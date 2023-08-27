@@ -54,7 +54,9 @@ class DatabaseSeeder extends Seeder
         Position::create([
             'name' => 'Employee',
         ]);
-        Ticket::factory(20)->create();
+
+        Ticket::factory(100)->create();
+
         Country::create([
             'name' => 'Afghanistan',
         ]);

@@ -37,13 +37,7 @@
                               <div class="mx-auto" style="width: 140px;">
                                 <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
                                   <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">
-
-                                   @if ($edit_user->image)
-                                      <img class="img-preview" src="http://finalssip.test/storage/{{$edit_user->image}}"  width="140" height="140">
-                                  @else
-                                   <img class="img-preview img-fluid">
-                                     
-                                  @endif
+                                    <img class="img-preview" src="/storage/{{$edit_user->image}}"  width="140" height="140">
                                   </span>
                                 </div>
                               </div>
