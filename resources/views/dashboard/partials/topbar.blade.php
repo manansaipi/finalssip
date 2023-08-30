@@ -46,25 +46,36 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
+                                @if ($total_notif !== 0)
+                                <span class="badge badge-danger badge-counter">{{ $total_notif }}+</span>
+                                @endif
+
                             </a>
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
-                                    Alerts Center
+                                    Notifications
                                 </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                @if ($total_notif !== 0)
+                                    
+                                @foreach ($notifications as $notif)
+                                <a class="dropdown-item d-flex align-items-center" href="/dashboard/tickets/{{ $notif->ticket->id }}?notification_id={{ $notif->id }}">
                                     <div class="mr-3">
                                         <div class="icon-circle bg-primary">
                                             <i class="fas fa-file-alt text-white"></i>
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                        <div class="small text-gray-500">{{ $notif->created_at->format('F j, Y h:i A') }}</div>
+                                        <span class="font-weight-bold">{{ $notif->message }}</span>
                                     </div>
                                 </a>
+                                @endforeach
+                                @else
+                                <div class="text-center">You do not have any notifications!</div>
+                                @endif
+                                
                                 {{-- <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="mr-3">
                                         <div class="icon-circle bg-success">
@@ -87,7 +98,7 @@
                                         Spending Alert: We've noticed unusually high spending for your account.
                                     </div>
                                 </a> --}}
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Notifications</a>
                             </div>
                         </li>
 

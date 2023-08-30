@@ -89,7 +89,7 @@
                                             } ?> </span></td>
                                              <?php if(auth()->user()->position->name === "CEO" && auth()->user()->id != $ticket->creator_id|| auth()->user()->position->name === "IT Employee" && auth()->user()->id != $ticket->creator_id) :?>    
                                            <td style="text-align: center;">
-                                                    <a href="/dashboard/tickets/{{ $ticket->id }}" class="btn btn-<?php 
+                                                    <a href="/dashboard/tickets/{{ $ticket->id }}?notification_id={{ $ticket->notification->pluck('id') }}" class="btn btn-<?php 
                                             switch ($ticket->status_ticket){
                                                     case 0 :
                                                     echo "primary";

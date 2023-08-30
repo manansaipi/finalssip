@@ -14,6 +14,7 @@ use App\Models\Category;
 use App\Models\Ticket;
 use App\Models\Position;
 use App\Models\Country;
+use App\Models\Notification;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -50,6 +51,7 @@ Route::get('/home', function () {
         'inProgress_ticketsMy' => Ticket::where('status_ticket', 1)->where('creator_id', auth()->user()->id)->get(),
         'solved_ticketsMy' => Ticket::where('status_ticket', 2)->where('creator_id', auth()->user()->id)->get(),
         'canceled_ticketsMy' => Ticket::where('status_ticket', 3)->where('creator_id', auth()->user()->id)->get(),
+
 
     ]);
 })->middleware('auth');

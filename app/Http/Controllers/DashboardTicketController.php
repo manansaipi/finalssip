@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
+use App\Models\User;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\DB; // Import the DB facade
 class DashboardTicketController extends Controller
 {
     /**
@@ -52,7 +54,31 @@ class DashboardTicketController extends Controller
 
         $validatedData['creator_id'] = auth()->user()->id;
         $validatedData['status_ticket'] = 0;
-        Ticket::create($validatedData);
+
+        // store ticket
+        $ticket = Ticket::create($validatedData);
+
+        $ticket_id = $ticket->id;
+
+        //create user(auth) notifications
+        // Notification::create([
+        //     'user_id' => auth()->user()->id,
+        //     'ticket_id' => $ticket_id,
+        //     'message' => 'New Ticket !',
+        // ]);
+
+
+        // take all admins
+        $admins = User::whereIn('position_id', [1, 2])->get();
+
+        // store notifications to db for all admins
+        foreach ($admins as $admin) {
+            Notification::create([
+                'user_id' => $admin->id,
+                'ticket_id' => $ticket_id,
+                'message' => 'New Ticket !',
+            ]);
+        }
 
         return redirect('/dashboard/myticket')->with('success', "Your ticket has been added!");
         // return $request;
@@ -64,11 +90,27 @@ class DashboardTicketController extends Controller
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function show(Ticket $ticket)
+    public function show(Ticket $ticket, Request $request,)
     {
+        dd(gettype($request->notification_id));
+        DB::beginTransaction(); // Start a database transaction
+        Notification::where('user_id', auth()->user()->id)
+            ->whereIn('id', $request->notification_id)
+            ->update([
+                'is_read' => true
+            ]);
+        DB::commit(); // Commit the transaction. this will wait till all actions success before continue to the next part
+
         return view('dashboard.detail_ticket', [
             'active' => 'tickets',
-            'ticket' => $ticket
+            'ticket' => $ticket,
+            'total_notif' => Notification::where('user_id', auth()->user()->id)
+                ->where('is_read', false)
+                ->count(),
+            'notifications' => Notification::where('user_id', auth()->user()->id)
+                ->where('is_read', false)
+                ->get()
+
         ]);
     }
 
