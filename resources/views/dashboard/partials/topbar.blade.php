@@ -68,7 +68,7 @@
                                     </div>
                                     <div>
                                         <div class="small text-gray-500">{{ $notif->created_at->format('F j, Y h:i A') }}</div>
-                                        <span class="font-weight-bold">{{ $notif->message }}</span>
+                                        <span class="font-weight-bold">{{$notif->creator->username . ' created ' . $notif->message }}</span>
                                     </div>
                                 </a>
                                 @endforeach

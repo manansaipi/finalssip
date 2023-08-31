@@ -125,7 +125,7 @@
                                                 </td>
                                                 <?php else : ?>
 
-                                            <td style="text-align: center;"> <a href="/dashboard/tickets/{{ $ticket->id }}" class="btn btn-info btn-icon-split btn-sm">
+                                            <td style="text-align: center;"> <a href="/dashboard/tickets/{{ $ticket->id }}?notification_id={{ $ticket->notification->pluck('id') }}" class="btn btn-info btn-icon-split btn-sm">
                                                             <span class="text">Detail</span></a></td>
                                                     <?php endif; ?>
 

@@ -75,6 +75,7 @@ class DashboardTicketController extends Controller
         foreach ($admins as $admin) {
             Notification::create([
                 'user_id' => $admin->id,
+                'creator_id' => auth()->user()->id,
                 'ticket_id' => $ticket_id,
                 'message' => 'New Ticket !',
             ]);
@@ -92,13 +93,24 @@ class DashboardTicketController extends Controller
      */
     public function show(Ticket $ticket, Request $request,)
     {
-        dd(gettype($request->notification_id));
         DB::beginTransaction(); // Start a database transaction
-        Notification::where('user_id', auth()->user()->id)
-            ->whereIn('id', $request->notification_id)
-            ->update([
-                'is_read' => true
-            ]);
+
+        $notification_id = $request->notification_id; // $request->notification_id is a string
+
+        if (strpos($notification_id, '[')) { // check the string if contain '[]' then convert them into an array
+            $notification_id = json_decode($request->notification_id); // string'[1, 2, 3]' to array of number
+            Notification::where('user_id', auth()->user()->id)
+                ->whereIn('id', $notification_id) // whereIn check value inside an array
+                ->update([
+                    'is_read' => true
+                ]);
+        } else { // else the string doesn't contain '[]' means that is an int
+            Notification::where('user_id', auth()->user()->id)
+                ->where('id', $notification_id)
+                ->update([
+                    'is_read' => true
+                ]);
+        }
         DB::commit(); // Commit the transaction. this will wait till all actions success before continue to the next part
 
         return view('dashboard.detail_ticket', [
