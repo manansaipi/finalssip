@@ -42,6 +42,21 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
             'age' =>  18,
         ]);
+        User::create([
+            'name' => 'JOHN SENA',
+            'username' => 'john',
+            'position_id' => 3,
+            'email' => 'john@gmail.com',
+            'password' => bcrypt('aaaaa'),
+            'bio' => 'Lorem',
+            'country_id' => mt_rand(1, 200),
+            'instagram' => "john",
+            'github' => "john",
+            'birthday' => now(),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+            'age' =>  30,
+        ]);
         User::factory(10)->create();
 
         Position::create([

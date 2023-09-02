@@ -77,7 +77,7 @@ class DashboardTicketController extends Controller
                 'user_id' => $admin->id,
                 'creator_id' => auth()->user()->id,
                 'ticket_id' => $ticket_id,
-                'message' => 'New Ticket !',
+                'message' => 'created new ticket !',
             ]);
         }
 
@@ -168,7 +168,7 @@ class DashboardTicketController extends Controller
                 abort(403);
             }
             $validatedData['status_ticket'] = 1; //CONFIRM TICKET
-            if ($ticket->status_ticket == 1) {
+            if ($ticket->status_ticket == 1) { // solved ticket goes here
                 $validatedData = $request->validate([
                     'feedback' => 'required',
                 ]);
@@ -176,10 +176,23 @@ class DashboardTicketController extends Controller
                 $validatedData['solvedby_id'] = auth()->user()->id;
                 Ticket::where('id', $ticket->id)
                     ->update($validatedData);
+                Notification::create([
+                    'user_id' => $ticket->creator->id,
+                    'creator_id' => auth()->user()->id,
+                    'ticket_id' => $ticket->id,
+                    'message' => 'has solved',
+                ]);
                 return redirect('/dashboard/tickets')->with('success', "Successfully solved the ticket!");
             }
+            // confirm ticket
             Ticket::where('id', $ticket->id)
                 ->update($validatedData);
+            Notification::create([
+                'user_id' => $ticket->creator->id,
+                'creator_id' => auth()->user()->id,
+                'ticket_id' => $ticket->id,
+                'message' => 'has confirm',
+            ]);
             return redirect('/dashboard/tickets')->with('success', "Successfully confirmed the ticket!");
         }
     }

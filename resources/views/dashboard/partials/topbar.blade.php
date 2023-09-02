@@ -62,13 +62,29 @@
                                 @foreach ($notifications as $notif)
                                 <a class="dropdown-item d-flex align-items-center" href="/dashboard/tickets/{{ $notif->ticket->id }}?notification_id={{ $notif->id }}">
                                     <div class="mr-3">
+                                    @if ($notif->message === "created new ticket !")
                                         <div class="icon-circle bg-primary">
                                             <i class="fas fa-file-alt text-white"></i>
                                         </div>
+                                    @elseif ($notif->message === "has confirm")
+                                        <div class="icon-circle bg-info">
+                                            <i class="fas fa-solid fa-clock text-white"></i>
+                                        </div>
+                                    @else
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-solid fa-check text-white"></i>
+                                        </div>
+                                        
+                                    @endif
                                     </div>
                                     <div>
                                         <div class="small text-gray-500">{{ $notif->created_at->format('F j, Y h:i A') }}</div>
-                                        <span class="font-weight-bold">{{$notif->creator->username . ' created ' . $notif->message }}</span>
+                                        @if ($notif->message !== "created new ticket !")
+                                            <span class="font-weight-bold">{{"Your ticket with ID  " . $notif->ticket->id . ' ' . $notif->message . " by "  . $notif->creator->username  }}</span>  
+                                        @else
+                                            <span class="font-weight-bold">{{$notif->creator->username . ' ' . $notif->message }}</span>
+                                            
+                                        @endif
                                     </div>
                                 </a>
                                 @endforeach
@@ -98,7 +114,7 @@
                                         Spending Alert: We've noticed unusually high spending for your account.
                                     </div>
                                 </a> --}}
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Notifications</a>
+                                {{-- <a class="dropdown-item text-center small text-gray-500" href="#">Show All Notifications</a> --}}
                             </div>
                         </li>
 
