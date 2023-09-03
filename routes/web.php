@@ -28,6 +28,10 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
+Route::get('/welcome', function () {
+    return view('welcome', []);
+});
+
 
 Route::get('/',  [LoginController::class, 'index'])->name('login')->middleware('guest'); //loginpage
 Route::post('/',  [LoginController::class, 'login'])->middleware('guest'); //loginpage

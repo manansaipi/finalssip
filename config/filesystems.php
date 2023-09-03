@@ -55,6 +55,15 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
+        'gcs' => [
+            'driver' => 'gcs',
+            'project_id' => env('GCS_PROJECT_ID', '	pre-in-396205'),
+            'key_file' => env('GCS_KEY_FILE', null),
+            'bucket' => env('GCS_BUCKET', 'pre-in'),
+            'path_prefix' => 'optional/path/prefix',
+            'storage_api_uri' => 'https://storage.googleapis.com',
+        ],
+
 
     ],
 

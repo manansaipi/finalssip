@@ -8,6 +8,8 @@ use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB; // Import the DB facade
+use Telegram\Bot\Laravel\Facades\Telegram;
+
 class DashboardTicketController extends Controller
 {
     /**
@@ -41,6 +43,7 @@ class DashboardTicketController extends Controller
      */
     public function store(Request $request)
     {
+
         // return $request->file('image')->store('post-image');
         $validatedData = $request->validate([
             'ticket_title' => 'required|max:255',
@@ -81,6 +84,10 @@ class DashboardTicketController extends Controller
             ]);
         }
 
+        Telegram::sendMessage([
+            'chat_id' => 1714741980,
+            'text' => auth()->user()->name . ' created new ticket !',
+        ]);
         return redirect('/dashboard/myticket')->with('success', "Your ticket has been added!");
         // return $request;
     }
@@ -164,9 +171,10 @@ class DashboardTicketController extends Controller
                 ->update($validatedData);
             return redirect('/dashboard/myticket')->with('success', "Your ticket has been updated!");
         } else {  //update user ticket by IT Employee or CEO
-            if (auth()->guest() || auth()->user()->position->name == "Employee") {
-                abort(403);
-            }
+            // if (auth()->guest() || auth()->user()->position->name == "Employee") {
+            //     abort(403);
+            // }
+            $this->authorize('admin'); // using gate, logic same like above
             $validatedData['status_ticket'] = 1; //CONFIRM TICKET
             if ($ticket->status_ticket == 1) { // solved ticket goes here
                 $validatedData = $request->validate([

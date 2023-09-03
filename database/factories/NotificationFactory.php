@@ -17,7 +17,13 @@ class NotificationFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id' => mt_rand(262021001, 262021012),
+            'creator_id' =>  mt_rand(262021001, 262021011),
+            // 'body' => fake()->text(),
+            // // 'status_ticket' =>  2,
+            // 'status_ticket' =>  mt_rand(0, 3),
+            // 'solvedby_id' =>  mt_rand(262021001, 262021011),
+            // 'feedback' => fake()->text()
         ];
     }
 }

@@ -103,6 +103,9 @@ class DashboardUserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        // $image = $request->file('image');
+        // // $path = $file->store('uploads', 'gcs');
+        // dd($image->store('images', 'gcs'));
         if (auth()->user()->id == $user->id) { // edit my profile
             $rules = [
                 'name' => 'required|max:125',
