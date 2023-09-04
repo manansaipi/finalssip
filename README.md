@@ -1,10 +1,10 @@
 # Ticketing Web Application
 
-I have created a web-based ticketing application using PHP and Bootstrap. As the creator of this app, I aimed to provide users with a convenient way to manage their tickets and request issue resolutions. Users can sign up for an account and create tickets to report problems. They also have the option to cancel or delete their tickets if needed. Once a ticket is marked as resolved or canceled, users cannot update its details. However, they can still view the ticket status and any feedback provided by admins or IT staff. By implementing these features, I aimed to streamline the ticketing process
+I developed a ticketing application using Laravel and Bootstrap. Utilizing Laravel's built-in features and libraries, I implemented various functionalities, including user authentication, ticket submission, image upload, profile management, and admin feedback. Additionally, I added extra features such as chart generation and image search using the Unsplash API. Working independently, I designed and implemented the application from start to finish, ensuring a seamless and efficient ticketing system. By leveraging Laravel's capabilities and incorporating additional functionalities, I created a fully functional ticketing application that provided an enhanced user experience.
 
 # Video Demo Ticketing Web Application :
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/X61UqD_2ywQ/0.jpg)](https://www.youtube.com/watch?v=X61UqD_2ywQ) 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/NexhEJfP6mQ/0.jpg)](https://drive.google.com/file/d/11ZjAQnNHXwOAOayjev5PypllmgN1MXXl/view?usp=sharing) 
 
 
 
