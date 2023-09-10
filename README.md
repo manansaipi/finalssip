@@ -2,10 +2,8 @@
 
 I developed a ticketing application using Laravel and Bootstrap. Utilizing Laravel's built-in features and libraries, I implemented various functionalities, including user authentication, ticket submission, image upload, profile management, and admin feedback. Additionally, I added extra features such as chart generation and image search using the Unsplash API. Working independently, I designed and implemented the application from start to finish, ensuring a seamless and efficient ticketing system. By leveraging Laravel's capabilities and incorporating additional functionalities, I created a fully functional ticketing application that provided an enhanced user experience.
 
-# Video Demo Ticketing Web Application :
-
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/NexhEJfP6mQ/0.jpg)](https://drive.google.com/file/d/11ZjAQnNHXwOAOayjev5PypllmgN1MXXl/view?usp=sharing) 
-
+# Application Demo :
+https://ticketing-app-rayrerraza-as.a.run.app/
 
 
 | Name  | Description | Preview |
@@ -32,5 +30,9 @@ I developed a ticketing application using Laravel and Bootstrap. Utilizing Larav
 | Delete Ticket | Admin can delete ticket if the ticket was solved or cancaled by the users | ![alt text](./doc/delete-ticket.png) |
 
 ---
+
+# Video Application Demo : 
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/NexhEJfP6mQ/0.jpg)](https://drive.google.com/file/d/11ZjAQnNHXwOAOayjev5PypllmgN1MXXl/view?usp=sharing) 
 
 
