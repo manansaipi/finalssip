@@ -1,0 +1,7 @@
+runtime: php81
+
+runtime_config:
+  document_root: public
+
+env_variables:
+  APP_ENV: production
